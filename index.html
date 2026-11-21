@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4d3469">
+<title>Kevin's Cookie Shop Tycoon</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="game.js"></script><script defer src="customers.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./" aria-label="Kevin's Cookie Shop home"><span class="brand-icon">🍪</span><span>KEVIN’S <b>COOKIE SHOP</b></span></a><button class="text-button" id="restart">New game</button></header>
+<main>
+<div class="heading"><div><p class="eyebrow">SMALL SHOP. BIG COOKIE ENERGY.</p><h1>A little dough.<br>A big dream.</h1><p class="intro">Turn $100 into your own sweet success story.</p></div><div class="day-badge"><span id="day-label">DAY 1 OF 30</span><div class="progress"><i id="progress"></i></div><span class="small">Your month of making it happen</span></div></div>
+<section class="stats" aria-label="Shop overview"><article><span class="stat-icon">$</span><div><p>Available cash</p><strong id="cash">$100.00</strong></div></article><article><span class="stat-icon">↗</span><div><p>Total profit</p><strong id="total-profit">$0.00</strong></div></article><article><span class="stat-icon">🍪</span><div><p>Cookies sold</p><strong id="total-sold">0</strong></div></article><article><span class="stat-icon">☀</span><div><p id="weather-label">Today’s outlook</p><strong id="outlook">A lovely day</strong></div></article></section>
+<div class="game-grid">
+<section class="shop-panel" aria-label="Your cookie shop"><div class="shop-caption"><span class="pill">BAKED WITH AMBITION</span><span id="shop-day">Est. Day 1</span></div>
+<svg class="shop-art" viewBox="0 0 650 410" role="img" aria-label="Kevin’s little purple cookie shop, with a striped awning, fresh cookies, and a sidewalk sign">
+<defs><pattern id="stripes" width="62" height="70" patternUnits="userSpaceOnUse"><rect width="31" height="70" fill="#f6bc69"/><rect x="31" width="31" height="70" fill="#fff1d6"/></pattern></defs>
+<circle cx="325" cy="190" r="170" fill="#e2d7f3"/><circle cx="520" cy="73" r="25" fill="#f9ce7d"/><path d="M65 143h62m-31-20h58M481 137h74" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="322" cy="371" rx="244" ry="18" fill="#d0c0e5"/>
+<path d="M149 144h355v218H149z" fill="#8c6aaf"/><path d="M173 200h307v162H173z" fill="#b89bcd"/>
+<rect x="164" y="88" width="325" height="69" rx="10" fill="#4d3469"/><rect x="172" y="96" width="309" height="53" rx="5" fill="none" stroke="#b998d6"/>
+<text x="326" y="130" text-anchor="middle" font-family="Georgia, serif" font-size="27" fill="#fff1d6">Kevin’s Cookie Shop</text>
+<path d="M156 157h340l25 55H131z" fill="url(#stripes)"/><path d="M131 212h390v10q-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-31 0-15 20-18 0z" fill="#f6bc69"/>
+<rect x="188" y="240" width="174" height="98" rx="5" fill="#4d3469"/><rect x="196" y="248" width="158" height="81" rx="2" fill="#ffedc9"/><path d="M275 248v81" stroke="#8c6aaf" stroke-width="6"/>
+<g fill="#d78e48" stroke="#b37238" stroke-width="2"><circle cx="218" cy="307" r="15"/><circle cx="249" cy="307" r="15"/><circle cx="301" cy="307" r="15"/><circle cx="333" cy="307" r="15"/></g>
+<g fill="#624032"><circle cx="214" cy="302" r="3"/><circle cx="224" cy="312" r="3"/><circle cx="245" cy="309" r="3"/><circle cx="253" cy="300" r="3"/><circle cx="298" cy="301" r="3"/><circle cx="306" cy="313" r="3"/><circle cx="330" cy="310" r="3"/><circle cx="338" cy="301" r="3"/></g>
+<path d="M186 332h178v10H186z" fill="#6c4b8c"/><rect x="382" y="237" width="80" height="125" rx="5" fill="#5f417d"/><rect x="391" y="247" width="62" height="69" rx="3" fill="#e8dff4"/><path d="M394 250l57 59M394 277l30 34" stroke="#fff" stroke-width="5" opacity=".5"/><circle cx="447" cy="330" r="4" fill="#f6bc69"/>
+<path d="M389 362h68l10 10h-88z" fill="#6d4c8c"/><path d="M104 313l-13 58m35-58 13 58" stroke="#6b4b40" stroke-width="6"/><rect x="88" y="296" width="51" height="65" rx="4" fill="#fff1d6" stroke="#b98150" stroke-width="4"/><text x="113" y="318" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="bold" fill="#624032">FRESH</text><text x="113" y="331" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="bold" fill="#624032">COOKIES</text><path d="M102 343h22" stroke="#b98150" stroke-width="2"/>
+<path d="M520 338h34l-5 33h-24z" fill="#c48e67"/><path d="M537 339v-44m0 27q-35-6-19-27 18 5 19 27m0-9q28-30 33-4-12 18-33 16" fill="#729d7a" stroke="#729d7a" stroke-width="4"/>
+<g id="customers" aria-hidden="true"></g>
+</svg>
+<div class="customer-status" id="customer-status" hidden><div><strong id="customer-message" role="status"></strong><span id="customer-count"></span></div><button class="text-button" id="skip-customers" type="button">See results</button></div>
+<div class="shop-note"><span>✦</span><div><h3>Your neighborhood’s next favorite.</h3><p>Bake smart, price right, and make every day count.</p></div></div>
+<div class="forecast"><span class="eyebrow">TODAY’S NEIGHBORHOOD BUZZ</span><h3 id="event-title">A fresh start</h3><p id="event-description"></p></div></section>
+<section class="plan-panel"><div class="section-title"><div><p class="eyebrow" id="plan-day">DAY 1 · YOUR GAME PLAN</p><h2>Let’s get baking.</h2></div><span class="mini-cookie">🍪</span></div><p class="panel-intro">A few good decisions. A whole lot of cookies.</p>
+<form id="plan-form">
+<div class="field"><label for="quantity">Cookies to bake <span>$0.50 each</span></label><div class="input-wrap"><span>🍪</span><input id="quantity" type="number" min="0" max="10000" step="1" value="60" required><span>cookies</span></div><p>Fresh daily. Unsold cookies won’t carry over.</p></div>
+<div class="field"><label for="price">Price per cookie <span>Sweet spot: $1–$3</span></label><div class="input-wrap"><span>$</span><input id="price" type="number" min="0.25" max="20" step="0.05" value="2.00" required><span>/ cookie</span></div><p>Higher prices earn more, but attract fewer customers.</p></div>
+<div class="field"><label for="advertising">Advertising budget <span>Spread the word</span></label><div class="input-wrap"><span>$</span><input id="advertising" type="number" min="0" max="10000" step="0.50" value="5.00" required><span>/ day</span></div><p>Bring more cookie lovers through your door.</p></div>
+<div class="budget"><div><span>Baking + advertising</span><strong id="cost">$35.00</strong></div><div><span>Cash after upfront costs</span><strong id="cash-after">$65.00</strong></div></div>
+<p class="error" id="error" role="alert"></p><button class="primary" id="bake-button" type="submit">Open shop & bake</button><p class="fine-print">No rent. No hidden costs. Just you and the dough.</p>
+</form></section></div>
+<section class="results" id="results" tabindex="-1" hidden aria-live="polite"><div class="result-heading"><div><p class="eyebrow" id="result-day"></p><h2 id="result-title"></h2></div><span class="result-pill" id="result-pill"></span></div><div class="result-grid" id="result-grid"></div><p id="result-note"></p><button class="primary" id="next-day">Plan the next day</button></section>
+<section class="history-panel"><div class="history-heading"><h2>The daily crumb</h2><span>Your shop’s story, one day at a time</span></div><p class="empty" id="empty-history">Your first chapter starts with a fresh batch. Open your shop to see your results here.</p><div class="table-wrap" id="history-wrap" hidden><table><thead><tr><th>Day</th><th>Baked</th><th>Sold</th><th>Price</th><th>Revenue</th><th>Expenses</th><th>Profit</th><th>Cash</th></tr></thead><tbody id="history"></tbody></table></div></section>
+<footer>Made with a little butter & a lot of ambition. <span>Kevin’s Cookie Shop Tycoon · 30 days to rise</span></footer>
+</main><dialog id="restart-dialog"><h2>A fresh batch?</h2><p>This will reset your shop to day 1 with $100.</p><div class="dialog-actions"><button class="text-button" id="cancel-restart">Keep playing</button><button class="primary" id="confirm-restart">Start fresh</button></div></dialog>
+</body></html>
